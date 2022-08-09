@@ -1,4 +1,4 @@
-package com.mongodb.examples.springdatabulkinsert;
+package com.mongodb.examples.SpringDataBulkInsert.Model;
 
 import com.github.javafaker.Faker;
 import org.slf4j.Logger;

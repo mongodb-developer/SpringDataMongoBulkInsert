@@ -1,4 +1,4 @@
-package com.mongodb.examples.springdatabulkinsert;
+package com.mongodb.examples.SpringDataBulkInsert;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

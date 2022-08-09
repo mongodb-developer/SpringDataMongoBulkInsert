@@ -1,6 +1,6 @@
-package com.mongodb.examples.springdatabulkinsert;
+package com.mongodb.examples.SpringDataBulkInsert.Repository;
 
-public interface CustomProductsRepository {
+public interface ProductsRepository {
     void updateProductQuantity(String name, int newQty)  ;
     int bulkInsertProducts(int count);
 }

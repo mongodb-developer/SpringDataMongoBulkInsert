@@ -1,8 +1,9 @@
-package com.mongodb.examples.springdatabulkinsert;
+package com.mongodb.examples.SpringDataBulkInsert.Repository;
 
 import com.mongodb.WriteConcern;
 import com.mongodb.bulk.BulkWriteResult;
 import com.mongodb.client.result.UpdateResult;
+import com.mongodb.examples.SpringDataBulkInsert.Model.Products;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +19,10 @@ import java.time.Instant;
 
 
 @Component
-public class CustomProductsRepositoryImpl implements CustomProductsRepository {
+public class ProductsRepositoryImpl implements ProductsRepository {
 
     private static final Logger LOG = LoggerFactory
-            .getLogger(CustomProductsRepository.class);
+            .getLogger(ProductsRepository.class);
 
     @Autowired
     MongoTemplate mongoTemplate;
@@ -42,14 +43,16 @@ public class CustomProductsRepositoryImpl implements CustomProductsRepository {
 
     public int bulkInsertProducts(int count) {
 
-        LOG.info("Dropping collection...");
-        mongoTemplate.dropCollection(Products.class);
-        LOG.info("Dropped!");
+        //LOG.info("Dropping collection...");
+        //mongoTemplate.dropCollection(Products.class);
+        //LOG.info("Dropped!");
 
         Instant start = Instant.now();
         mongoTemplate.setWriteConcern(WriteConcern.W1.withJournal(true));
 
+        LOG.info("Creating random prods");
         Products [] productList = Products.RandomProducts(count);
+        LOG.info("Done creating random prods");
         BulkOperations bulkInsertion = mongoTemplate.bulkOps(BulkOperations.BulkMode.UNORDERED, Products.class);
 
         for (int i=0; i<productList.length; ++i)

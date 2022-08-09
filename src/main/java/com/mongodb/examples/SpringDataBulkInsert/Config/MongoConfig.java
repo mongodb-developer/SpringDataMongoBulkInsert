@@ -1,4 +1,4 @@
-package com.mongodb.examples.springdatabulkinsert;
+package com.mongodb.examples.SpringDataBulkInsert.Config;
 
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;

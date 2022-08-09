@@ -1,5 +1,6 @@
-package com.mongodb.examples.springdatabulkinsert;
+package com.mongodb.examples.SpringDataBulkInsert;
 
+import com.mongodb.examples.SpringDataBulkInsert.Repository.ProductsRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,8 @@ public class SpringDataBulkInsertApplication implements CommandLineRunner {
             .getLogger(SpringDataBulkInsertApplication.class);
 
     @Autowired
-    private CustomProductsRepository repository;
+
+    ProductsRepository repository;
 
     public static void main(String[] args) {
         SpringApplication.run(SpringDataBulkInsertApplication.class, args);
@@ -28,6 +30,7 @@ public class SpringDataBulkInsertApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         repository.bulkInsertProducts(count);
+
         LOG.info("End run");
     }
 }
