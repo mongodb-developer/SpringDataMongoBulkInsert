@@ -1,6 +1,6 @@
 package com.mongodb.examples.springdatabulkinsert;
 
-import com.github.javafaker.Faker;
+import net.datafaker.Faker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.annotation.Id;

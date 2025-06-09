@@ -4,7 +4,6 @@ import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
-import nl.altindag.ssl.SSLFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +11,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 
 import javax.net.ssl.SSLContext;
 import java.nio.file.Paths;
+import nl.altindag.ssl.SSLFactory;
 
 @Configuration
 public class MongoConfig   {
@@ -19,6 +19,7 @@ public class MongoConfig   {
     private String uri;
     @Value("${mongodb.database}")
     private String databaseName;
+
     @Value("${truststore.path}")
     private String trustStorePath;
     @Value("${truststore.pwd}")
@@ -35,7 +36,6 @@ public class MongoConfig   {
             MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
                     .applyConnectionString(connectionString)
                     .applyToSslSettings(builder -> {
-
                         if (!atlas) {
                             // Use SSLContext if a trustStore has been provided
                             if (!trustStorePath.isEmpty()) {
