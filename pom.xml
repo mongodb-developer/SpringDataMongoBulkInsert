@@ -54,6 +54,7 @@
             <version>2.4.3</version>
         </dependency>
 
+        <!-- Security (optional) -->
         <dependency>
             <groupId>io.github.hakky54</groupId>
             <artifactId>sslcontext-kickstart</artifactId>
