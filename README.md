@@ -10,5 +10,7 @@ Connects to a replica set and bulk inserts a number of random documents. Uses th
 - Documents are sent to the products collection in a user defined database.
 
 
-This is sample source provided as an example and is not supported in any way by MongoDB.
+This sample application is provided to demonstrate integration capability. Users
+should review this code for component versioning and overall applicability for
+their own use case. 
 

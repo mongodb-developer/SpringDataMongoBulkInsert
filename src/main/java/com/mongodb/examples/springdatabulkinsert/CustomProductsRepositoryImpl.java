@@ -23,8 +23,12 @@ public class CustomProductsRepositoryImpl implements CustomProductsRepository {
     private static final Logger LOG = LoggerFactory
             .getLogger(CustomProductsRepository.class);
 
+    private final MongoTemplate mongoTemplate;
+
     @Autowired
-    MongoTemplate mongoTemplate;
+    public CustomProductsRepositoryImpl(MongoTemplate mongoTemplate){
+        this.mongoTemplate = mongoTemplate;
+    }
 
 
     public void updateProductQuantity(String name, int newQuantity) {
