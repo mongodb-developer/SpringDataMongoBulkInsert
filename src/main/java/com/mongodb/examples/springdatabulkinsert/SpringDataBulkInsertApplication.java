@@ -28,6 +28,6 @@ public class SpringDataBulkInsertApplication implements CommandLineRunner {
 
         repository.bulkInsertProducts(count);
         LOG.info("End run");
-        System.exit(1);
+        System.exit(0);
     }
 }
