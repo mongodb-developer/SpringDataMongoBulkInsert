@@ -17,18 +17,17 @@ public class SpringDataBulkInsertApplication implements CommandLineRunner {
             .getLogger(SpringDataBulkInsertApplication.class);
 
     @Autowired
-    private CustomProductsRepository repository;
+    private ProductRepository repository;
 
     public static void main(String[] args) {
         SpringApplication.run(SpringDataBulkInsertApplication.class, args);
     }
-
 
     @Override
     public void run(String... args) throws Exception {
 
         repository.bulkInsertProducts(count);
         LOG.info("End run");
-        System.exit(1);
+        System.exit(0);
     }
 }

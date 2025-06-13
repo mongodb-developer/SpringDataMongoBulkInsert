@@ -16,27 +16,25 @@ import org.springframework.stereotype.Component;
 import java.time.Duration;
 import java.time.Instant;
 
-
 @Component
-public class CustomProductsRepositoryImpl implements CustomProductsRepository {
+public class ProductRepository {
 
     private static final Logger LOG = LoggerFactory
-            .getLogger(CustomProductsRepository.class);
+            .getLogger(ProductRepository.class);
 
     private final MongoTemplate mongoTemplate;
 
     @Autowired
-    public CustomProductsRepositoryImpl(MongoTemplate mongoTemplate){
+    public ProductRepository(MongoTemplate mongoTemplate){
         this.mongoTemplate = mongoTemplate;
     }
-
 
     public void updateProductQuantity(String name, int newQuantity) {
         Query query = new Query(Criteria.where("name").is(name));
         Update update = new Update();
         update.set("quantity", newQuantity);
 
-        UpdateResult result = mongoTemplate.updateFirst(query, update, Products.class);
+        UpdateResult result = mongoTemplate.updateFirst(query, update, Product.class);
 
         if(result == null)
             LOG.error("No documents updated");
@@ -47,14 +45,14 @@ public class CustomProductsRepositoryImpl implements CustomProductsRepository {
     public int bulkInsertProducts(int count) {
 
         LOG.info("Dropping collection...");
-        mongoTemplate.dropCollection(Products.class);
+        mongoTemplate.dropCollection(Product.class);
         LOG.info("Dropped!");
 
         Instant start = Instant.now();
         mongoTemplate.setWriteConcern(WriteConcern.W1.withJournal(true));
 
-        Products [] productList = Products.RandomProducts(count);
-        BulkOperations bulkInsertion = mongoTemplate.bulkOps(BulkOperations.BulkMode.UNORDERED, Products.class);
+        Product [] productList = Product.RandomProducts(count);
+        BulkOperations bulkInsertion = mongoTemplate.bulkOps(BulkOperations.BulkMode.UNORDERED, Product.class);
 
         for (int i=0; i<productList.length; ++i)
             bulkInsertion.insert(productList[i]);
